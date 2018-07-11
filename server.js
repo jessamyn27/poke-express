@@ -7,9 +7,10 @@ app.get('/home', (req,res)=>{
 })
 
 app.get('/pokemon', (req,res)=>{
-    res.send(Pokemon);
-});
-
+    res.render('index.ejs', {
+        pokemon: Pokemon
+    });
+})
 
 app.listen(3000, () => {
   console.log('I am listening on port 3000');
