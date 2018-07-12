@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
-const Pokemon = require('./models/pokemon')
+const Pokemon = require('./models/pokemon');
+const port = 3000;
+
+app.use(express.static('public'));
 
 app.get('/home', (req,res)=>{
     res.send('Welcome to the Pokemon App!');
@@ -8,21 +11,19 @@ app.get('/home', (req,res)=>{
 
 app.get('/pokemon', (req,res)=>{
     res.render('index.ejs', {
-        pokemon: Pokemon
+        pokemons: Pokemon
     });
 })
 
 app.get('/pokemon/:id', (req,res)=>{
     res.render('show.ejs', {
-      pokemon: Pokemon[req.params.id]
-    })
+        pokemon: Pokemon[req.params.id]
     });
+})
 
-
-app.listen(3000, () => {
-  console.log('I am listening on port 3000');
-});
-
+app.listen(port, ()=>{
+    console.log('test')
+})
 // const bodyParser = require('body-parser');
 // const methodOverride = require('method-override');
 // app.use(methodOverride('_method'));
